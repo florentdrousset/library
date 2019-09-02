@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {% if app.user %}
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion<span class="sr-only">(current)</span></a>
                 </li>
                     {% else %}
@@ -33,6 +33,11 @@
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Livres</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav m-3">
+                <li class="nav-item my-2 my-lg-0">
+                    <a class="nav-link" href="{{ path('librarian') }}">Espace Bibliothécaire</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
