@@ -8,6 +8,12 @@
         {% endblock %}
     </head>
     <body>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+
+            {{ message }}
+        </div>
+    {% endfor %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,11 +24,11 @@
             <ul class="navbar-nav mr-auto">
                 {% if app.user %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Déconnexion<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion<span class="sr-only">(current)</span></a>
                 </li>
                     {% else %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="">Connexion<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion<span class="sr-only">(current)</span></a>
                         </li>
                 {% endif %}
                 <li class="nav-item">
