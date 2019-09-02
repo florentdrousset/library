@@ -2,6 +2,8 @@
 
 namespace App\EventSubscribers;
 
+use App\Events\RegisterEvent;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UserSubscriber implements EventSubscriberInterface
@@ -13,6 +15,11 @@ class UserSubscriber implements EventSubscriberInterface
         return [
             RegisterEvent::REGISTER => ['mailingRegister', 10],
         ];
+    }
+
+    public function mailingRegister()
+    {
+
     }
 
 }

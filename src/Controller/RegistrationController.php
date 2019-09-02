@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Events\RegisterEvent;
+
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +39,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
+            $event = new RegisterEvent();
+            $dispatcher->dispatch($event, OrderPlacedEvent::NAME);
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
