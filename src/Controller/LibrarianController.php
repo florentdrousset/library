@@ -15,7 +15,7 @@ class LibrarianController extends AbstractController
 {
     /**
      * @Route("/librarian", name="librarian")
-     * @Security("is_granted('ROLE_SUPERADMIN') and is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function index(UserRepository $ur) {
         return $this->render(
