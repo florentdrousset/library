@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="jumbotron text-center">
+    <h2>{{ book.title }}</h2>
+    <h6>écrit par {{ book.author }}</h6>
+</div>
+<div class="container">
+    <p>{{ book.pitch }}</p>
+    <p><a href="#" class="btn btn-primary">Réserver</a></p>
+</div>
+
+
+{% endblock %}
