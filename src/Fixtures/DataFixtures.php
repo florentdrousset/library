@@ -4,6 +4,7 @@ namespace App\Fixtures;
 
 use App\Entity\User;
 use App\Entity\Book;
+use App\Entity\Booking;
 use App\Entity\Event;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,11 +21,29 @@ class DataFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
+        $users = [];
+        $books = [];
         // On configure dans quelles langues nous voulons nos données
         $faker = Faker\Factory::create('fr_FR');
 
-        // Création de 100 books
+        // Création de 30 users
         for ($i = 0; $i < 30; $i++) {
+            $user = new User();
+
+            $user->setEmail($faker->email);
+            $user->setRoles($faker->randomElements($array = array ('ROLE_SUPERADMIN','ROLE_ADMIN','ROLE_CLIENT'), $count = 1));
+            $user->setPassword($this->encoder->encodePassword($user, 'password'));
+            $user->setFirstName($faker->firstName);
+            $user->setLastName($faker->lastName);
+            $user->setCity($faker->city());
+            $user->setAddress($faker->address);
+            $user->setZipCode($faker->postcode);
+            $manager->persist($user);
+
+            $users[] = $user;
+        }
+        // Création de 100 books
+        for ($i = 0; $i < 100; $i++) {
             $book = new Book();
 
             $book->setTitle($faker->word);
@@ -34,6 +53,8 @@ class DataFixtures extends Fixture
             $book->setPitch($faker->text());
             $book->setQuantity($faker->numberBetween($min = 0, $max = 10));
             $manager->persist($book);
+
+            $books[] = $book;
         }
         
         // Création de 30 events
@@ -61,19 +82,18 @@ class DataFixtures extends Fixture
             $manager->persist($event);
         }
 
-        // Création de 30 users
+        // Création de 30 bookings
         for ($i = 0; $i < 30; $i++) {
-            $user = new User();
+            
+            $bookChosen = $books[rand(0, count($books)-1)];
 
-            $user->setEmail($faker->email);
-            $user->setRoles($faker->randomElements($array = array ('ROLE_SUPERADMIN','ROLE_ADMIN','ROLE_CLIENT'), $count = 1));
-            $user->setPassword($this->encoder->encodePassword($user, 'password'));
-            $user->setFirstName($faker->firstName);
-            $user->setLastName($faker->lastName);
-            $user->setCity($faker->city());
-            $user->setAddress($faker->address);
-            $user->setZipCode($faker->postcode);
-            $manager->persist($user);
+            $booking = new Booking();
+
+            $booking->setUser($users[rand(0, count($users)-1)]);
+            $booking->setDateIn($faker->dateTimeBetween($startDate = '-20 days', $endDate = 'now', $timezone = null));
+            $booking->setDateOut($faker->dateTimeBetween($startDate = 'now', $endDate = '+15 days', $timezone = null));
+            $booking->setBook($bookChosen);
+            $manager->persist($booking);
         }
 
         $manager->flush();
