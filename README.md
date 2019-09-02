@@ -9,3 +9,10 @@ App de gestion de bibliothèque sous Symfony.
 * Envoyer mail après inscription
 * Envoyer mail 3J avant la date de retour prévue, lié à la prologation (bookId, userId) => UPDATE dateOut
 * (autocomplétion JS)
+
+### log :
+
+Lun 2 Sept.
+
+* Installation des bundles manquants
+* Génération des entités
