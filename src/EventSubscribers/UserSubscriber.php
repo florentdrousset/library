@@ -8,6 +8,13 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UserSubscriber implements EventSubscriberInterface
 {
+    private $sendMail;
+
+    public function __construct(\App\Services\SendMail $sendMail)
+    {
+        $this->sendMail = $sendMail;
+    }
+
     public static function getSubscribedEvents()
     {
         // return the subscribed events, their methods and priorities
@@ -16,9 +23,10 @@ class UserSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function mailingRegister()
+    public function mailingRegister(RegisterEvent $event)
     {
-
+        //dd($event->getUser());
+        $this->sendMail->sendMailAfterRegistration($event->getUser());
     }
 
 }

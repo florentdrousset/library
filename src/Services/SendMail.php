@@ -2,21 +2,29 @@
 
 namespace App\Services;
 
-class sendMail
+use App\Entity\User;
+
+class SendMail
 {
-    public function sendMailAfterRegistration(\Swift_Mailer $mailer)
+    private $mailer;
+
+    public function __construct(\Swift_Mailer $mailer)
     {
-        $message = (new \Swift_Message('Welcome'))
-            ->setFrom('send@example.com')
-            ->setTo($this->getUser()->getEmail())
-            ->setBody('Félicitations, vous venez de vous inscrire sur Library.')
-
-        ;
-
-        $mailer->send($message);
+        $this->mailer = $mailer;
     }
 
-    public function sendMailBeforeReturn(\Swift_Mailer $mailer)
+    public function sendMailAfterRegistration(User $user)
+    {
+        $message = (new \Swift_Message('Welcome'))
+            ->setFrom('admin@example.com')
+            ->setTo($user->getEmail())
+            ->setBody('Félicitations, vous venez de vous inscrire sur Library.')
+        ;
+
+        $this->mailer->send($message);
+    }
+
+    public function sendMailBeforeReturn()
     {
         $message = (new \Swift_Message('Information'))
             ->setFrom('send@example.com')
@@ -25,7 +33,7 @@ class sendMail
 
         ;
 
-        $mailer->send($message);
+        $this->mailer->send($message);
 
     }
 

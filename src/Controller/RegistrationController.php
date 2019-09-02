@@ -7,6 +7,8 @@ use App\Events\RegisterEvent;
 
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
+
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +21,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator, EventDispatcherInterface $dispatcher): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -39,8 +41,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-            $event = new RegisterEvent();
-            $dispatcher->dispatch($event, OrderPlacedEvent::NAME);
+            $event = new RegisterEvent($user);
+            $dispatcher->dispatch($event, RegisterEvent::REGISTER);
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
