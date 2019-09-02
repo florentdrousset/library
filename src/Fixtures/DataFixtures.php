@@ -8,10 +8,16 @@ use App\Entity\Event;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker;
 
 class DataFixtures extends Fixture
 {
+    private $encoder;
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
     public function load(ObjectManager $manager)
     {
         // On configure dans quelles langues nous voulons nos données
@@ -61,7 +67,7 @@ class DataFixtures extends Fixture
 
             $user->setEmail($faker->email);
             $user->setRoles($faker->randomElements($array = array ('ROLE_SUPERADMIN','ROLE_ADMIN','ROLE_CLIENT'), $count = 1));
-            $user->setPassword('password');
+            $user->setPassword($this->encoder->encodePassword($user, 'password'));
             $user->setFirstName($faker->firstName);
             $user->setLastName($faker->lastName);
             $user->setCity($faker->city());
@@ -75,4 +81,3 @@ class DataFixtures extends Fixture
 
 }
 
-?>
