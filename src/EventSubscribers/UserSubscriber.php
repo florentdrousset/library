@@ -2,8 +2,9 @@
 
 namespace App\EventSubscribers;
 
+use App\Events\RegisterEvent;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 
 class UserSubscriber implements EventSubscriberInterface
 {
@@ -11,12 +12,13 @@ class UserSubscriber implements EventSubscriberInterface
     {
         // return the subscribed events, their methods and priorities
         return [
-            KernelEvents::EXCEPTION => [
-                ['processException', 10],
-                ['logException', 0],
-                ['notifyException', -10],
-            ],
+            RegisterEvent::REGISTER => ['mailingRegister', 10],
         ];
+    }
+
+    public function mailingRegister()
+    {
+
     }
 
 }
