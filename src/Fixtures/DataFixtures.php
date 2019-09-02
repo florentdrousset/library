@@ -29,6 +29,7 @@ class DataFixtures extends Fixture
             $book->setQuantity($faker->numberBetween($min = 0, $max = 10));
             $manager->persist($book);
         }
+        
 
         // Création de 30 events
         for ($i = 0; $i < 30; $i++) {
