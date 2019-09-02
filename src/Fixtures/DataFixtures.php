@@ -30,7 +30,6 @@ class DataFixtures extends Fixture
             $manager->persist($book);
         }
         
-
         // Création de 30 events
         for ($i = 0; $i < 30; $i++) {
             $event = new Event();
