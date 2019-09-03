@@ -27,7 +27,17 @@ class DataFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
         // Création de 30 users
-        for ($i = 0; $i < 30; $i++) {
+
+            $user = new User(); //user de test
+            $user->setEmail('admin@test.fr')
+                ->setRoles(['ROLE_SUPERADMIN'])
+                ->setPassword($this->encoder->encodePassword($user, 'password'))
+                ->setFirstName('SuperAmin');
+            $manager->persist($user);
+
+            $users[] = $user;
+
+        for ($i = 0; $i < 29; $i++) {
             $user = new User();
 
             $user->setEmail($faker->email);

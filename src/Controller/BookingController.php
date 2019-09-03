@@ -22,7 +22,9 @@ class BookingController extends AbstractController
     /**
      * @Route("/reservation/{id}", name="reservation")
      */
-    public function reservation(Book $book, BookReservation $br) {
+    public function reservation(Book $book, BookReservation $br, \App\Services\GetDateOutOfBooking $getDates) 
+    {
+        $getDates->getDates();
         $user = $this->getUser();
         $br->orderABook($book, $user);
         return $this->render('books/book.html.twig', [
