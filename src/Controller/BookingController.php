@@ -21,7 +21,10 @@ class BookingController extends AbstractController
     /**
      * @Route("/reservation/{id}", name="reservation")
      */
-    public function reservation(updateStock $us, Book $book, Session $session, BookRepository $bookrep, EntityManagerInterface $em, BookingRepository $bookingrep) {
+    public function reservation(updateStock $us, Book $book, Session $session, BookRepository $bookrep, EntityManagerInterface $em, BookingRepository $bookingrep, \App\Services\GetDateOutOfBooking $GetDates) 
+    {
+        $GetDates->getDates($bookingrep);
+        
         $booking = new Booking();
         $booking->setUser($this->getUser());
         $em->persist($booking);
