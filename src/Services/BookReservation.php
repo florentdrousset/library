@@ -20,6 +20,9 @@ class BookReservation
     public function orderABook($book, $user) {
         $booking = new Booking();
         $booking->setUser($user);
+        $booking->setBook($book);
+        $booking->setDateIn();
+        $booking->setDateOut();
         $this->em->persist($booking);
         $this->em->flush();
         $this->sm->decrementStock($book);
