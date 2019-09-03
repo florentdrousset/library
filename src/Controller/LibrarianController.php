@@ -35,11 +35,12 @@ class LibrarianController extends AbstractController
         $firstName = $request->request->get('firstName');
         $lastName = $request->request->get('lastName');
         $result = $ur->findBy(array('firstName' => $firstName, 'lastName' => $lastName));
+        //findOneBy
         if($result) {
         return $this->render(
             'admin/bookReturn.html.twig',
             [
-                'user' => $result,
+                'user' => $result
             ]
         );
         } else {
@@ -48,7 +49,7 @@ class LibrarianController extends AbstractController
                 'admin/librarian.html.twig',
                 [
                     'user' => $this->getUser(),
-                    'users' => $ur->findAll()
+                    'users' => $ur->findAll(),
                 ]
             );
         }

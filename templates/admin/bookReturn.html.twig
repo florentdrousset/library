@@ -11,6 +11,18 @@
         <p class="lead">Bienvenue dans votre espace bibliothécaire.</p>
         <hr class="my-4">
         <p>L'utilisateur {{ user.0.firstName }} {{ user.0.lastName }} a actuellement {{ user.0.bookings|length }} livre(s) à rendre.</p>
+        {% if user.0.bookings %}
+            <ul class="list-group">
+                {% for b in user.0.bookings %}
+                <li class="list-group-item">
+                    <p>{{ b.book.title }}</p>
+                    <form>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retourner ce livre</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
     <script src="{{ asset('js/bookreturn.js') }}"></script>
 {% endblock %}
