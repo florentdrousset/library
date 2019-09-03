@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Services\BookReservation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -21,15 +22,9 @@ class BookingController extends AbstractController
     /**
      * @Route("/reservation/{id}", name="reservation")
      */
-    public function reservation(updateStock $us, Book $book, Session $session, BookRepository $bookrep, EntityManagerInterface $em, BookingRepository $bookingrep, \App\Services\GetDateOutOfBooking $GetDates) 
-    {
-        $GetDates->getDates($bookingrep);
-        
-        $booking = new Booking();
-        $booking->setUser($this->getUser());
-        $em->persist($booking);
-        $em->flush();
-        $us->decrementStock($book);
+    public function reservation(Book $book, BookReservation $br) {
+        $user = $this->getUser();
+        $br->orderABook($book, $user);
         return $this->render('books/book.html.twig', [
             'book' => $book
         ]);
