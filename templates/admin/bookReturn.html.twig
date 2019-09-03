@@ -10,13 +10,13 @@
     <div class="jumbotron">
         <p class="lead">Bienvenue dans votre espace bibliothécaire.</p>
         <hr class="my-4">
-        <p>L'utilisateur {{ user.0.firstName }} {{ user.0.lastName }} a actuellement {{ user.0.bookings|length }} livre(s) à rendre.</p>
+        <p>L'utilisateur <strong>{{ user.0.firstName }} {{ user.0.lastName }}</strong> a actuellement <strong>{{ user.0.bookings|length }}</strong> livre(s) à rendre.</p>
         {% if user.0.bookings %}
             <ul class="list-group">
                 {% for b in user.0.bookings %}
                 <li class="list-group-item">
                     <p>{{ b.book.title }}</p>
-                    <form>
+                    <form method="post">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retourner ce livre</button>
                     </form>
                 </li>
