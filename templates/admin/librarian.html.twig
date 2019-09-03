@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="jumbotron">
         <h1 class="display-4">Bienvenue, {{ user.firstName }}</h1>
         <p class="lead">Bienvenue dans votre espace bibliothécaire.</p>
@@ -12,7 +18,8 @@
         <div class="hidden" id="returnDiv">
             <p>Pour quel utilisateur voulez-vous retourner un livre ?</p>
             <form class="form-inline my-2 my-lg-0" method="post" action="{{ path('searchUser') }}" >
-                <input class="form-control mr-sm-2" type="text" id="user" name="user" placeholder="Nom d'utilisateur..." aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" id="firstName" name="firstName" placeholder="Prénom" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" id="lastName" name="lastName" placeholder="Nom" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
             </form>
         </div>
