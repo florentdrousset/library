@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\User;
+use App\Entity\Booking;
 
 class SendMail
 {
@@ -16,7 +17,7 @@ class SendMail
     public function sendMailAfterRegistration(User $user)
     {
         $message = (new \Swift_Message('Welcome'))
-            ->setFrom('admin@example.com')
+            ->setFrom('register@example.com')
             ->setTo($user->getEmail()) //User renvoyé par le getter de RegisterEvent
             ->setBody('Félicitations, vous venez de vous inscrire sur Library.')
         ;
@@ -24,17 +25,25 @@ class SendMail
         $this->mailer->send($message);
     }
 
-    public function sendMailBeforeReturn()
-    {
-        $message = (new \Swift_Message('Information'))
-            ->setFrom('send@example.com')
-            ->setTo($this->getUser()->getEmail())
-            ->setBody('Félicitations, vous venez de vous inscrire sur Library.')
-
-        ;
+    public function sendMailBeforeReturn(Booking $booking)
+    {        
+        $message = (new \Swift_Message('Info fin de réservation'))
+            ->setFrom('returnbook@example.com')
+            ->setTo($booking->getUser()->getEmail())
+            ->setBody('<html>' .
+                    ' <head></head>' .
+                    ' <body>' .
+                    ' Votre réservation du livre "'.$booking->getBook()->getTitle().'" se termine dans 3 jours.<br>Cliquez sur le lien ci-dessous pour prolonger votre réservation de 15 jours.<br>' .
+                    '<a href="http://localhost/library/public/prolongation/'.$booking->getId().'">Prolonger ma réservation</a>'.
+                    ' </body>' .
+                    '</html>',
+                    'text/html'
+            );
 
         $this->mailer->send($message);
 
+        var_dump($booking->getUser()->getEmail());
+        
     }
 
 }

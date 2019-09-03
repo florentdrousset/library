@@ -4,20 +4,22 @@ namespace App\Services;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-use App\Repository\BookingRepository;
+use App\Entity\Booking;
 
 class GetDateOutOfBooking
 {
     private $em;
+    private $sendMail;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, \App\Services\SendMail $sendMail)
     {
         $this->em = $em;
+        $this->sendMail = $sendMail;
     }
     
     public function getDates()
-    {
-        $bookings = $this->em->getRepository('BookingRepository')->findAll();
+    {  
+        $bookings = $this->em->getRepository('App:Booking')->findAll();
 
         $now = new \DateTime('today');
         $interval = new \DateInterval('P3D');
@@ -28,10 +30,9 @@ class GetDateOutOfBooking
 
             if ($now == $dateOut->sub($interval))
             {
-                var_dump($booking);
+                $this->sendMail->sendMailBeforeReturn($booking);
             }
         }
-        die;
     }
 
 }
