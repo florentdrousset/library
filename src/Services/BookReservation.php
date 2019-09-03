@@ -18,11 +18,15 @@ class BookReservation
     }
 
     public function orderABook($book, $user) {
+        $now = new \DateTime();
+        $in15days = new \DateTime();
+        $in15days->add(new \DateInterval('P15D'));
         $booking = new Booking();
+        //TODO: checker si l'utilisateur est bien connecté
         $booking->setUser($user);
         $booking->setBook($book);
-        $booking->setDateIn();
-        $booking->setDateOut();
+        $booking->setDateIn($now);
+        $booking->setDateOut($in15days);
         $this->em->persist($booking);
         $this->em->flush();
         $this->sm->decrementStock($book);
