@@ -7,7 +7,12 @@
         <hr class="my-4">
         <p>Quelle action souhaitez-vous effectuer ?</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Retourner un livre</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button" id="myButton">Retourner un livre</a>
         </p>
+        <div class="hidden" id="returnDiv">
+            <p>Pour quel utilisateur voulez vous retourner un livre ?</p>
+        </div>
     </div>
+    <script src="{{ asset('js/bookreturn.js') }}"></script>
 {% endblock %}
+

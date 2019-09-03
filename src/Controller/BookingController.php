@@ -24,11 +24,15 @@ class BookingController extends AbstractController
      */
     public function reservation(Book $book, BookReservation $br, \App\Services\GetDateOutOfBooking $getDates) 
     {
-        $getDates->getDates();
+        // $getDates->getDates()
         $user = $this->getUser();
         $br->orderABook($book, $user);
         return $this->render('books/book.html.twig', [
             'book' => $book
         ]);
+    }
+
+    public function bookReturner(Book $book, BookReservation $br) {
+
     }
 }

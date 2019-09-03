@@ -31,4 +31,8 @@ class BookReservation
         $this->em->flush();
         $this->sm->decrementStock($book);
     }
+
+    public function returnABook($book, $user) {
+
+    }
 }
