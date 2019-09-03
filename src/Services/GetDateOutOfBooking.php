@@ -2,23 +2,22 @@
 
 namespace App\Services;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 use App\Repository\BookingRepository;
 
 class GetDateOutOfBooking
 {
-    /*
     private $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
-    */
-    public function getDates(BookingRepository $bookingRepo)
+    
+    public function getDates()
     {
-        $bookings = $bookingRepo->findAll();
+        $bookings = $this->em->getRepository('BookingRepository')->findAll();
 
         $now = new \DateTime('today');
         $interval = new \DateInterval('P3D');
@@ -26,7 +25,7 @@ class GetDateOutOfBooking
         foreach ($bookings as $booking)
         {
             $dateOut = $booking->getDateOut();
-            
+
             if ($now == $dateOut->sub($interval))
             {
                 var_dump($booking);
