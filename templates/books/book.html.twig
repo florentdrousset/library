@@ -1,12 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% for message in app.flashes('returnedBook') %}
+        <div class="alert alert-success">
+
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('noBook') %}
+        <div class="alert alert-success">
+
+            {{ message }}
+        </div>
+    {% endfor %}
 <div class="jumbotron text-center">
     <h2>{{ book.title }}</h2>
     <h6>écrit par {{ book.author }}</h6>
 </div>
 <div class="container">
     <p>{{ book.pitch }}</p>
-    <p><a href="#" class="btn btn-primary">Réserver</a></p>
+    <p><a href="{{ path('reservation', {'id': book.id }) }}" class="btn btn-primary">Réserver</a></p>
 </div>
 
 

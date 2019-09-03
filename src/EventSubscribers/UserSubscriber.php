@@ -27,6 +27,5 @@ class UserSubscriber implements EventSubscriberInterface
     {
         $this->sendMail->sendMailAfterRegistration($event->getUser());
     }
-
 }
 
