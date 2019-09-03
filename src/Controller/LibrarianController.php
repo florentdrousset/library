@@ -33,14 +33,13 @@ class LibrarianController extends AbstractController
      */
     public function searchUser(Request $request, UserRepository $ur) {
         $firstName = $request->request->get('firstName');
-        $firstName = $ur->findBy(array('firstName' => $firstName));
         $lastName = $request->request->get('lastName');
-        $lastName = $ur->findBy(array('lastName' => $lastName));
-        if($firstName && $lastName) {
+        $result = $ur->findBy(array('firstName' => $firstName, 'lastName' => $lastName));
+        if($result) {
         return $this->render(
             'admin/bookReturn.html.twig',
             [
-                'user' => $firstName,
+                'user' => $result,
             ]
         );
         } else {

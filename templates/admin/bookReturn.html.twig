@@ -1,1 +1,16 @@
-Yo {{ user.0.firstName }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="jumbotron">
+        <p class="lead">Bienvenue dans votre espace bibliothécaire.</p>
+        <hr class="my-4">
+        <p>L'utilisateur {{ user.0.firstName }} {{ user.0.lastName }} a actuellement {{ user.0.bookings|length }} livre(s) à rendre.</p>
+    </div>
+    <script src="{{ asset('js/bookreturn.js') }}"></script>
+{% endblock %}
