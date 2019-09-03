@@ -31,4 +31,15 @@ class BookingController extends AbstractController
             'book' => $book
         ]);
     }
+
+    /**
+     * @Route("/prolongation/{id}", name="prolongation")
+     */
+    public function prolongation(Booking $booking, BookReservation $br) 
+    {
+        $user = $this->getUser();
+        $br->prolongateABook($booking);
+        
+        return $this->redirectToRoute('home');
+    }
 }

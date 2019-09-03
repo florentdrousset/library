@@ -31,4 +31,14 @@ class BookReservation
         $this->em->flush();
         $this->sm->decrementStock($book);
     }
+
+    public function prolongateABook($booking)
+    {
+        $dateOutInitial = $booking->getDateOut();
+        $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D'));
+
+        $booking->setDateOut($dateOutFinal);
+        $this->em->persist($booking)
+                ->flush();
+    }
 }
