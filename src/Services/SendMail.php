@@ -17,7 +17,7 @@ class SendMail
     {
         $message = (new \Swift_Message('Welcome'))
             ->setFrom('admin@example.com')
-            ->setTo($user->getEmail())
+            ->setTo($user->getEmail()) //User renvoyé par le getter de RegisterEvent
             ->setBody('Félicitations, vous venez de vous inscrire sur Library.')
         ;
 

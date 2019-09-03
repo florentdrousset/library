@@ -25,7 +25,6 @@ class UserSubscriber implements EventSubscriberInterface
 
     public function mailingRegister(RegisterEvent $event)
     {
-        //dd($event->getUser());
         $this->sendMail->sendMailAfterRegistration($event->getUser());
     }
 
