@@ -38,7 +38,9 @@ class BookReservation
         $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D'));
 
         $booking->setDateOut($dateOutFinal);
-        $this->em->persist($booking)
-                ->flush();
+        $this->em->persist($booking);
+        $this->em->flush();
+
+        dd($booking);
     }
 }

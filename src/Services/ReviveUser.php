@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Booking;
 
-class GetDateOutOfBooking
+class ReviveUser
 {
     private $em;
     private $sendMail;
@@ -17,7 +17,7 @@ class GetDateOutOfBooking
         $this->sendMail = $sendMail;
     }
     
-    public function getDates()
+    public function reviveThreeDaysBeforeDateOut()
     {  
         $bookings = $this->em->getRepository('App:Booking')->findAll();
 
