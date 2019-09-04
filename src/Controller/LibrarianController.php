@@ -4,7 +4,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Book;
 use App\Repository\UserRepository;
+use App\Services\BookReservation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -58,8 +60,9 @@ class LibrarianController extends AbstractController
     /**
      * @Route("/bookreturn/{id}", name="bookreturn")
      */
-    public function returnABook()
+    public function returnABook(Book $book, Request $request, BookReservation $br)
     {
-        return 'yo';
+        $br->returnABook($book);
+        return $this->redirectToRoute('searchUser');
     }
 }

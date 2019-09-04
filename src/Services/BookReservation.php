@@ -48,7 +48,8 @@ class BookReservation
         // dd($booking);
     }
 
-    public function returnABook() {
+    public function returnABook($book) {
+        $this->sm->incrementStock($book);
 
     }
 }
