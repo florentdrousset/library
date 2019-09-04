@@ -1,5 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="jumbotron text-center"><h1>Tableau de bord</h1></div>
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenue, {{ user.firstName }}</h1>
+        <p class="lead">Bienvenue dans votre espace utilisateur.</p>
+        <hr class="my-4">
+        <p>Vous avez actuellement <strong>{{ user.bookings|length }}</strong> livre(s) à rendre :</p>
+
+        <ul class="list-group">
+            {% for b in user.bookings %}
+                <li class="list-group-item"><strong>{{ b.book.title }}</strong>, écrit par <strong>{{ b.book.author }}</strong>
+                    <p><small>A rendre avant le : {{ b.dateOut|date('d-m-Y') }}</small></p>
+                </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
 {% endblock %}
