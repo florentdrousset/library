@@ -54,4 +54,12 @@ class LibrarianController extends AbstractController
             );
         }
     }
+
+    /**
+     * @Route("/bookreturn/{id}", name="bookreturn")
+     */
+    public function returnABook()
+    {
+        return 'yo';
+    }
 }

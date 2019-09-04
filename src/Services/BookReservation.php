@@ -43,4 +43,8 @@ class BookReservation
         $this->em->flush();
 
     }
+
+    public function returnABook() {
+
+    }
 }
