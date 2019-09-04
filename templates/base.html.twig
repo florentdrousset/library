@@ -12,7 +12,6 @@
     <body>
     {% for message in app.flashes('success', 'revive') %}
         <div class="alert alert-success">
-
             {{ message }}
         </div>
     {% endfor %}
@@ -37,11 +36,27 @@
                     <a class="nav-link" href="{{ path('books') }}">Livres</a>
                 </li>
             </ul>
-            <ul class="navbar-nav m-3">
-                <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link" href="{{ path('librarian') }}">Espace Bibliothécaire</a>
-                </li>
-            </ul>
+
+                <ul class="navbar-nav m-3">
+                        {% if is_granted('ROLE_SUPERADMIN') %}
+                    <li class="nav-item my-2 my-lg-0">
+                        <a class="nav-link" href="{{ path('admin') }}">Espace Admin</a>
+                    </li>
+                    <li class="nav-item my-2 my-lg-0">
+                        <a class="nav-link" href="{{ path('librarian') }}">Espace Bibliothécaire</a>
+                    </li>
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item my-2 my-lg-0">
+                            <a class="nav-link" href="{{ path('librarian') }}">Espace Bibliothécaire</a>
+                    </li>
+                        {% endif %}
+                    <li class="nav-item my-2 my-lg-0">
+                        <a class="nav-link" href="{{ path('userSpace') }}">Espace Personnel</a>
+                    </li>
+                </ul>
+
+
+
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
