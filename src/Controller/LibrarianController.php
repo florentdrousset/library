@@ -10,6 +10,7 @@ use App\Services\BookReservation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,8 +24,6 @@ class LibrarianController extends AbstractController
      */
     public function index(UserRepository $ur) {
         $allUsers = $ur->findAll();
-
-        //TODO: écrire une méthode qui renvoie directement du JSON à partir du UserRepository
 
         return $this->render(
             'admin/librarian.html.twig',
@@ -73,11 +72,19 @@ class LibrarianController extends AbstractController
         $book = $booking->getBook();
         $br->returnABook($book, $user[0], $booking);
 
-        return $this->render(
-            'admin/bookReturn.html.twig',
-                [
-                    'user' => $user
-                ]
-            );
-        }
+    return $this->render(
+        'admin/bookReturn.html.twig',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
+    /**
+     * @Route("autocomplete/{query}", name="autocomplete", methods={"GET"})
+     */
+    public function autocompletionSearch(UserRepository $ur, Request $request) {
+        $result = $ur->findByExampleField($request->query->get('search'));
+        return new JsonResponse($result);
+    }
 }
