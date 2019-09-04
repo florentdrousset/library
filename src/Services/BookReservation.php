@@ -43,4 +43,8 @@ class BookReservation
 
         dd($booking);
     }
+
+    public function returnABook() {
+
+    }
 }

@@ -16,7 +16,7 @@
                 {% for b in user.0.bookings %}
                 <li class="list-group-item">
                     <p>{{ b.book.title }}</p>
-                    <form method="post">
+                    <form method="post" action="{{ path('bookreturn', {'id': b.book.id })}}">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retourner ce livre</button>
                     </form>
                 </li>
