@@ -22,11 +22,15 @@ class LibrarianController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function index(UserRepository $ur) {
+        $allUsers = $ur->findAll();
+
+        //TODO: écrire une méthode qui renvoie directement du JSON à partir du UserRepository
+
         return $this->render(
             'admin/librarian.html.twig',
             [
                 'user' => $this->getUser(),
-                'users' => $ur->findAll()
+                'users' => $allUsers
             ]
         );
     }
@@ -36,6 +40,7 @@ class LibrarianController extends AbstractController
     public function searchUser(Request $request, UserRepository $ur) {
         $firstName = $request->request->get('firstName');
         $lastName = $request->request->get('lastName');
+
         $result = $ur->findBy(array('firstName' => $firstName, 'lastName' => $lastName));
         //findOneBy
         if($result) {
