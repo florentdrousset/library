@@ -16,8 +16,10 @@
                 {% for b in user.0.bookings %}
                 <li class="list-group-item">
                     <p>{{ b.book.title }}</p>
-                    <form method="post" action="{{ path('bookreturn', {'id': b.book.id })}}">
+                    <form method="post" action="{{ path('bookreturn', {'id': b.id })}}">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retourner ce livre</button>
+                        <input id="firstName" name="firstName" type="hidden" value="{{ user.0.firstName }}">
+                        <input id="lastName" name="lastName" type="hidden" value="{{ user.0.lastName }}">
                     </form>
                 </li>
                 {% endfor %}

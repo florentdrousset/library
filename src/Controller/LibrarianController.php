@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Book;
+use App\Entity\Booking;
 use App\Repository\UserRepository;
 use App\Services\BookReservation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,9 +61,19 @@ class LibrarianController extends AbstractController
     /**
      * @Route("/bookreturn/{id}", name="bookreturn")
      */
-    public function returnABook(Book $book, Request $request, BookReservation $br)
+    public function returnABook(Booking $booking, Request $request, BookReservation $br, UserRepository $ur)
     {
-        $br->returnABook($book);
-        return $this->redirectToRoute('searchUser');
-    }
+        $firstName = $request->request->get('firstName');
+        $lastName = $request->request->get('lastName');
+        $user = $ur->findBy(array('firstName' => $firstName, 'lastName' => $lastName));
+        $book = $booking->getBook();
+        $br->returnABook($book, $user[0], $booking);
+
+            return $this->render(
+                'admin/bookReturn.html.twig',
+                [
+                    'user' => $user
+                ]
+            );
+        }
 }

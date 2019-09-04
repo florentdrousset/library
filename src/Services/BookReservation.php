@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Entity\Booking;
+use App\Entity\User;
 use App\Services\updateStock;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -44,8 +45,11 @@ class BookReservation
 
     }
 
-    public function returnABook($book) {
+    public function returnABook($book, User $user, Booking $booking)
+    {
         $this->sm->incrementStock($book);
-
+        $user->removeBooking($booking);
+        $this->em->persist($user);
+        $this->em->flush();
     }
 }
