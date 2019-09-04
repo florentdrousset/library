@@ -8,7 +8,7 @@ function asyncRequest() {
         .then(function(response) {
             return response.json();
         }).then(function(data){
-        
+
     })
 }
 
