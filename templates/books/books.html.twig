@@ -23,7 +23,9 @@
 
             <div class="card m-3" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ b.title }}</h5>
+                    <h5 class="card-title text-capitalize">{{ b.title }}</h5>
+                    <h6>de {{ b.author }}</h6>
+                    <br />
                     <p class="card-text">{{ b.pitch }}</p>
                     <a href="{{ path('book', { 'id': b.id }) }}" class="btn btn-primary">En savoir plus</a>
                 </div>
