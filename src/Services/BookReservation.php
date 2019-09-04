@@ -29,19 +29,23 @@ class BookReservation
         $booking->setDateOut($in15days);
         $this->em->persist($booking);
         $this->em->flush();
+
         $this->sm->decrementStock($book);
     }
 
-    public function prolongateABook($booking)
+    public function prolongateABook(Booking $booking)
     {
-        $dateOutInitial = $booking->getDateOut();
-        $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D'));
-
-        $booking->setDateOut($dateOutFinal);
-        $this->em->persist($booking);
+        // $dateOutInitial = $booking->getDateOut();
+        // dd($booking->getBook()->getGenre());
+        dd($booking->getDateOut());
+        // $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D'));
+        // $booking->setDateOut($dateOutFinal);
+        $booking->prolongate();
+        $booking->setDateOut(new \DateTime('2020-05-25'));
+        // $this->em->persist($booking);
         $this->em->flush();
 
-        dd($booking);
+        // dd($booking);
     }
 
     public function returnABook() {
