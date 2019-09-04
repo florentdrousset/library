@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+
+            {{ message }}
+        </div>
+    {% endfor %}
+<p>Page Admin</p>
+{% for user in users %}
+    {{dump(users.email)}}
+{% endfor %}
+
+{% endblock %}

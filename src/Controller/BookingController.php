@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
 class BookingController extends AbstractController
 
 {
@@ -23,6 +21,7 @@ class BookingController extends AbstractController
     {
         $user = $this->getUser();
         $br->orderABook($book, $user);
+        
         return $this->render('books/book.html.twig', [
             'book' => $book
         ]);
