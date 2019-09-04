@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Booking;
+use App\Entity\Book;
+
 use App\Repository\UserRepository;
 use App\Repository\BookRepository;
 use App\Repository\BookingRepository;
@@ -23,6 +27,17 @@ class AdminController extends AbstractController
                 'bookings' => $bookings->findAll(),
             ]
         );
+    }
+
+    /**
+     * @Route("/admin/delete/{id}", name="admin_delete")
+     */
+    public function delete(User $user, \App\Services\DeleteObject $delete)
+    {
+        $delete->deleteUser($user);
+
+        return $this->redirectToRoute('admin');
+
     }
 }
 

@@ -45,11 +45,9 @@ class BookReservation
 
     }
 
-    public function returnABook($book, User $user, Booking $booking)
+    public function returnABook(Book $book, Booking $booking, \App\Services\DeleteObject $delete)
     {
         $this->sm->incrementStock($book);
-        $user->removeBooking($booking);
-        $this->em->persist($user);
-        $this->em->flush();
+        $delete->deleteBooking($booking);
     }
 }
