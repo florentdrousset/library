@@ -35,17 +35,13 @@ class BookReservation
 
     public function prolongateABook(Booking $booking)
     {
-        // $dateOutInitial = $booking->getDateOut();
-        // dd($booking->getBook()->getGenre());
-        dd($booking->getDateOut());
-        // $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D'));
-        // $booking->setDateOut($dateOutFinal);
-        $booking->prolongate();
-        $booking->setDateOut(new \DateTime('2020-05-25'));
-        // $this->em->persist($booking);
+        $dateOutInitial = $booking->getDateOut();
+        $dateOutFinal = $dateOutInitial->add(new \DateInterval('P15D')); //le dateInterval ne passe pas dans la BDD => passage en string puis repassage en DateTime
+        $toString = $dateOutFinal->format('Y-m-d H:i:s');
+        $booking->setDateOut(new \DateTime($toString));
+
         $this->em->flush();
 
-        // dd($booking);
     }
 
     public function returnABook($book) {

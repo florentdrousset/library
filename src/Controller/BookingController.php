@@ -36,13 +36,11 @@ class BookingController extends AbstractController
     {
         $user = $this->getUser();
         $br->prolongateABook($booking);
-// dd($booking);
+
         $this->addFlash(
             'revive',
             'Les relances ont été effectuées.'
         );
-        
-        // $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('home');
     }
