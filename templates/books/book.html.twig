@@ -1,11 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {% for message in app.flashes('returnedBook') %}
-        <div class="alert alert-success">
 
-            {{ message }}
-        </div>
-    {% endfor %}
     {% for message in app.flashes('noBook') %}
         <div class="alert alert-danger">
 

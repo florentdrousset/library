@@ -68,8 +68,8 @@ class LibrarianController extends AbstractController
         $book = $booking->getBook();
         $br->returnABook($book, $user[0], $booking);
 
-            return $this->render(
-                'admin/bookReturn.html.twig',
+        return $this->render(
+            'admin/bookReturn.html.twig',
                 [
                     'user' => $user
                 ]
