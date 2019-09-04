@@ -36,6 +36,11 @@ class AdminController extends AbstractController
     {
         $delete->deleteUser($user);
 
+        $this->addFlash(
+            'delete',
+            'Vous avez bien suprimé l\'utilisateur.'
+        );
+
         return $this->redirectToRoute('admin');
 
     }

@@ -2,8 +2,8 @@
 
 {% block body %}
 
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
+    {% for message in app.flashes('delete') %}
+        <div class="alert alert-success ">
 
             {{ message }}
         </div>
@@ -21,14 +21,36 @@
     </thead>
     <tbody>
         {% for user in users %}
+        {% set loopIndex = loop.index %}
             <tr>
-                <td>{{user.email}}</td>
-                <td>{{user.firstName}}</td>
-                <td>@{{user.lastName}}</td>
-                <td>@{{user.roles[0]}}</td>
-                <td>
-                    <a class="btn btn-outline-primary btn-lg" {#href="{{ path('/admin/update') }}"#} role="button">Update</a>
-                    <a class="btn btn-outline-danger btn-lg" href="{{ path('admin_delete', {'id': user.id }) }}" role="button">Delete</a>
+                <td style="vertical-align:middle">{{user.email}}</td>
+                <td style="vertical-align:middle">{{user.firstName}}</td>
+                <td style="vertical-align:middle">{{user.lastName}}</td>
+                <td style="vertical-align:middle">
+                    <form action="" method="get">
+                        <select style="width:90px">
+                            {% if user.roles[0] == "ROLE_SUPERADMIN" %}
+      
+                                    <option value="ROLE_SUPERADMIN">SuperAdmin</option>
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                    <option value="ROLE_CLIENT">Client</option>
+                            {% endif %}
+                            {% if user.roles[0] == "ROLE_ADMIN" %}
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                    <option value="ROLE_SUPERADMIN">SuperAdmin</option>
+                                    <option value="ROLE_CLIENT">Client</option>
+                                {% endif %}
+                                {% if user.roles[0] == "ROLE_CLIENT" %}
+                                    <option value="ROLE_CLIENT">Client</option>
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                    <option value="ROLE_SUPERADMIN">SuperAdmin</option>
+                                {% endif %}
+                                    
+                        </select>
+                </td>
+                <td style="vertical-align:middle">
+                    <a href="#" class="badge badge-secondary">Update</a>
+                    <a href="{{ path('admin_delete', {'id': user.id }) }}" class="badge badge-danger">Delete</a>
                 </td>
             </tr>
         {% endfor %}           
