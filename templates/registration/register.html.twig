@@ -4,12 +4,50 @@
 
 {% block body %}
     <h1>Register</h1>
+    <div class='container'>
+        {{ form_start(registrationForm) }}
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.email) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.plainPassword) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.firstName) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.lastName) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.city) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.address) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.zipCode) }}
+            </div>
+        </div>
+        <div class='row w-50'>
+            <div class="col">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <button class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
