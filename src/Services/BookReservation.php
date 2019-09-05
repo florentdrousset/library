@@ -30,7 +30,6 @@ class BookReservation
         $booking->setDateOut($in15days);
         $this->em->persist($booking);
         $this->em->flush();
-
         $this->sm->decrementStock($book);
     }
 
