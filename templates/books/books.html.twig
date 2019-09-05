@@ -3,14 +3,12 @@
 {% block body %}
     <div class="jumbotron text-center">
         <h2>Liste des livres</h2>
-<<<<<<< HEAD
 
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('book_new') }}" class="btn btn-warning">Créer un livre</a>
         {% endif %}
     </div>
     
-=======
         <p>Recherche par genre</p>
         <form action="{{ path('booksByGenre') }}" method="get">
             <select name="genre">
@@ -23,7 +21,6 @@
         <a href="{{ path('books') }}">Voir tous les livres</a>
     </div>
 
->>>>>>> ec33e42c631ae3da4822f6755d492bb4a682084f
     <div class="container">
 
             <div class="row">
