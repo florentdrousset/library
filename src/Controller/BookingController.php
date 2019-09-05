@@ -6,6 +6,8 @@ use App\Entity\Book;
 use App\Entity\Booking;
 use App\Services\BookReservation;
 
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,9 +19,18 @@ class BookingController extends AbstractController
     /**
      * @Route("/reservation/{id}", name="reservation")
      */
-    public function reservation(Book $book, BookReservation $br) 
+    public function reservation(Book $book, BookReservation $br, Request $request)
     {
         $user = $this->getUser();
+        $id = $request->get('id');
+        try {
+            $this->denyAccessUnlessGranted('book', $book);
+        } catch(\Exception $e) {
+            $this->addFlash('noBook', 'Erreur : vous ne pouvez pas emprunter plus de 5 livres en même temps !');
+            $this->redirectToRoute('book', array(
+                'id' => $id
+            ));
+        }
         $br->orderABook($book, $user);
         
         return $this->render('books/book.html.twig', [

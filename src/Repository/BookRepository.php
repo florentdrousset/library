@@ -19,6 +19,13 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
+    public function getAllGenres() {
+        return $this->createQueryBuilder('b')
+            ->select('b.genre')
+            ->groupBy('b.genre')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */
