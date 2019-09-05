@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="846517f8-406c-4dde-995e-7e93bb297a5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BooksController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LibrarianController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LibrarianController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Events/RegisterEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Events/RegisterEvent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BookRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/SendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SendMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/books/books.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/books/books.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +39,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/LibrarianController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-784">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+            <state relative-caret-position="699">
+              <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+              <folding>
+                <element signature="e#35#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Services/BookReservation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+            <state relative-caret-position="651">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="e#33#56#0#PHP" expanded="true" />
               </folding>
@@ -404,12 +401,12 @@
       <workItem from="1567497247818" duration="19599000" />
       <workItem from="1567582567129" duration="27000" />
       <workItem from="1567582605273" duration="18614000" />
-      <workItem from="1567669330295" duration="9331000" />
+      <workItem from="1567669330295" duration="9582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64155000" />
+    <option name="totallyTimeSpent" value="64406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -826,20 +823,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/BookReservation.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/LibrarianController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+        <state relative-caret-position="699">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
           <folding>
-            <element signature="e#33#56#0#PHP" expanded="true" />
+            <element signature="e#35#58#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/LibrarianController.php">
+    <entry file="file://$PROJECT_DIR$/src/Services/BookReservation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-784">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="651">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#33#56#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

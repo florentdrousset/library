@@ -7,15 +7,18 @@ use App\Entity\Booking;
 use App\Entity\User;
 use App\Services\updateStock;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Book;
 
 class BookReservation
 {
     private $sm;
     private $em;
+    private $delete;
 
-    public function __construct(updateStock $sm, EntityManagerInterface $em) {
+    public function __construct(updateStock $sm, EntityManagerInterface $em, \App\Services\DeleteObject $delete) {
         $this->sm = $sm;
         $this->em = $em;
+        $this->delete = $delete;
     }
 
     public function orderABook($book, $user) {
@@ -44,9 +47,9 @@ class BookReservation
 
     }
 
-    public function returnABook(Book $book, Booking $booking, \App\Services\DeleteObject $delete)
+    public function returnABook(Book $book, Booking $booking)
     {
         $this->sm->incrementStock($book);
-        $delete->deleteBooking($booking);
+        $this->delete->deleteBooking($booking);
     }
 }
