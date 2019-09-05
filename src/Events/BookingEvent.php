@@ -1,14 +1,14 @@
 <?php
 
+
 namespace App\Events;
 
+use App\Entity\Event;
 use App\Entity\User;
 
-use Symfony\Contracts\EventDispatcher\Event;
-
-class RegisterEvent extends Event
+class BookingEvent extends Event
 {
-    const REGISTER = 'user.register';
+    public const NAME = 'book.booking';
 
     private $user;
 
@@ -22,4 +22,3 @@ class RegisterEvent extends Event
         return $this->user;
     }
 }
-

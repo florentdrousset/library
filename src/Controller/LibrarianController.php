@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Repository\UserRepository;
 use App\Services\BookReservation;
+use App\Entity\Book;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;

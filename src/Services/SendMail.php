@@ -25,6 +25,15 @@ class SendMail
         $this->mailer->send($message);
     }
 
+    public function sendMailAfterBooking(User $user)
+    {
+        $message = (new \Swift_Message('Votre commande'))
+            ->setFrom('booking@example.com')
+            ->setTo($user->getEmail())
+            ->setBody('Vous avez bien loué votre livre')
+            ;
+    }
+
     public function sendMailBeforeReturn(Booking $booking)
     {        
         $message = (new \Swift_Message('Info fin de réservation'))
