@@ -12,6 +12,7 @@ use App\Repository\BookingRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends AbstractController
 {
@@ -42,6 +43,21 @@ class AdminController extends AbstractController
         );
 
         return $this->redirectToRoute('admin');
+
+    }
+
+    /**
+     * @Route("/admin/update/{id}", name="admin_update")
+     */
+    public function update(Request $request, User $user)
+    {
+        $value = $request->request->get('update_role');
+        $user->setRoles([$value]);
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('admin', ['post' => $_POST]);
 
     }
 }

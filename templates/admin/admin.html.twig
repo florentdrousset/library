@@ -27,8 +27,8 @@
                 <td style="vertical-align:middle">{{user.firstName}}</td>
                 <td style="vertical-align:middle">{{user.lastName}}</td>
                 <td style="vertical-align:middle">
-                    <form action="" method="get">
-                        <select style="width:90px">
+                    <form action="{{ path('admin_update', {'id': user.id }) }}" method="post">
+                        <select style="width:90px" name="update_role">
                             {% if user.roles[0] == "ROLE_SUPERADMIN" %}
       
                                     <option value="ROLE_SUPERADMIN">SuperAdmin</option>
@@ -49,8 +49,13 @@
                         </select>
                 </td>
                 <td style="vertical-align:middle">
-                    <a href="#" class="badge badge-secondary">Update</a>
-                    <a href="{{ path('admin_delete', {'id': user.id }) }}" class="badge badge-danger">Delete</a>
+
+                        <button type="submit" class="badge badge-warning">Update</button>
+                    </form>
+
+                    {% if user.email != "admin@test.fr" %}
+                        <a href="{{ path('admin_delete', {'id': user.id }) }}" class="badge badge-danger">Delete</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}           
