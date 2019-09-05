@@ -6,8 +6,11 @@ namespace App\Services;
 use App\Entity\Booking;
 use App\Entity\User;
 use App\Entity\Book;
+use App\Events\BookingEvent;
 use App\Services\updateStock;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class BookReservation
 {
@@ -21,7 +24,14 @@ class BookReservation
         $this->delete = $delete;
     }
 
+    /**
+     * @param $book
+     * @param $user
+     * @throws \Exception
+     */
     public function orderABook($book, $user) {
+
+
         $now = new \DateTime();
         $in15days = new \DateTime();
         $in15days->add(new \DateInterval('P15D'));

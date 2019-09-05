@@ -3,12 +3,12 @@
 
 namespace App\Events;
 
-use App\Entity\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 use App\Entity\User;
 
 class BookingEvent extends Event
 {
-    public const NAME = 'book.booking';
+    public const BOOKING = 'book.booking';
 
     private $user;
 

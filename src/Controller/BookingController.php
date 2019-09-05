@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\Booking;
+use App\Entity\User;
+use App\Events\BookingEvent;
 use App\Services\BookReservation;
 
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -19,8 +22,12 @@ class BookingController extends AbstractController
     /**
      * @Route("/reservation/{id}", name="reservation")
      */
-    public function reservation(Book $book, BookReservation $br, Request $request)
+    public function reservation(Book $book, BookReservation $br, Request $request, EventDispatcherInterface $dispatcher)
     {
+        $user = $this->getUser();
+        $event = new BookingEvent($user);
+        $dispatcher->dispatch($event, BookingEvent::BOOKING);
+
         $user = $this->getUser();
         $id = $request->get('id');
         try {

@@ -32,6 +32,8 @@ class SendMail
             ->setTo($user->getEmail())
             ->setBody('Vous avez bien loué votre livre')
             ;
+        $this->mailer->send($message);
+
     }
 
     public function sendMailBeforeReturn(Booking $booking)
