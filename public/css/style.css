@@ -1,3 +1,7 @@
 .hidden {
     display: none;
 }
+#new_book_publicationDate select{
+    width: 31%;
+    margin-right: 10px;
+}

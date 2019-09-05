@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Book{% endblock %}
+
+{% block body %}
+    <h1>New Book</h1>
+    <div class='container'>
+        {{ form_start(newBookForm) }}
+            <div class='row w-50'>
+                <div class="col">
+                    {{ form_row(newBookForm.title) }}
+                </div>
+            </div>
+            <div class='row w-50'>
+                <div class="col">
+                    {{ form_row(newBookForm.author) }}
+                </div>
+            </div>
+            <div class='row w-50'>
+                <div class="col" id="new_book_publicationDate">
+                    {{ form_row(newBookForm.publicationDate) }}
+                </div>
+            </div>
+            <div class='row w-50'>
+                <div class="col">
+                    {{ form_row(newBookForm.genre) }}
+                </div>
+            </div>
+            <div class='row w-50'>
+                <div class="col">
+                    {{ form_row(newBookForm.pitch) }}
+                </div>
+            </div>
+            <div class='row w-50'>
+                <div class="col">
+                    {{ form_row(newBookForm.quantity) }}
+                </div>
+            </div>
+        {{ form_end(newBookForm) }}
+    </div>
+
+{% endblock %}

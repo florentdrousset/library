@@ -12,7 +12,7 @@ class DeleteObject
 {
     private $em;
 
-    public function __construct(updateStock $sm, EntityManagerInterface $em) 
+    public function __construct(EntityManagerInterface $em) 
     {
         $this->em = $em;
     }

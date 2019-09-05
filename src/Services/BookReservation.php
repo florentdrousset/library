@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Entity\Booking;
 use App\Entity\User;
+use App\Entity\Book;
 use App\Services\updateStock;
 use Doctrine\ORM\EntityManagerInterface;
 
